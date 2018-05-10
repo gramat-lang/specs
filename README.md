@@ -6,7 +6,7 @@ Grammar language for parsing a collection of name/value pairs.
 
 The grammar is conformed by a finite number of rules. The rules are defined using a language similar to the regular expressions of most programming languages but adapted to describe a collection of name/value pairs (_map_ in this document).
 
-### Declaration
+### Rule Declaration
 
 It is possible to give a name to a rule and make reference later. Considerations:
 
@@ -16,6 +16,18 @@ It is possible to give a name to a rule and make reference later. Considerations
 ```
 name = rule ;
 ```
+
+## Template Declaration
+
+A template takes one or more parameters to produce another rule. This is specially util to avoid repeat patterns across the grammar.
+
+```
+name [ param1 , param2 , ...paramN ] = rule ;
+```
+
+- `name` is the name of the template. It must follow the [name syntax](#) and be unique.
+- `param1 , param2 , ...paramN` represents a comma separated list of names which are the parameters of the function.
+- `rule` can be any rule definition. The parameter names are available here to use them anywhere as replacements. The name collisions are solved in the order of first the local and then the global.
 
 ### Documentation
 
@@ -197,6 +209,17 @@ The rule to be evaluated will be searched in the context using the specified nam
 ```
 name
 ```
+
+## Template Call Rule
+
+Calls an existing function passing the specified rules as arguments to be processed and the resulting rule is evaluated.
+
+```
+name [ name1 , name2 , ...nameN ]
+```
+
+- `name` must be the name of an existing template.
+- `name1 , name2 , ...nameN` represents a comma separated list of literals.
 
 # Configuration
 
