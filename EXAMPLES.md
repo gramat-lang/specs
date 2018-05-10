@@ -10,23 +10,28 @@
 
 ## String Property
 
-**Rule:**
+#### Grammar
 
 ```
 <username: alphanum+> ('@' <domain: alphanum+ ('.' alphanum+)+>)?
 ```
 
-**Pseudocode:**
+#### Examples
 
 ```javascript
-rule.eval('johann85@example.com')
+// input:
+'johann85@example.com'
+// output:
 { 'username': 'johann85', 'domain': 'example.com' }
 
-rule.eval('George85') 
+// input:
+'George85'
+// output:
 { 'username': 'George85' }
 
-rule.eval('antonio78@') 
-// error, it doesn't match
+// input:
+'antonio78@'
+// output: error, it doesn't match
 ```
 
 ## Number Property
