@@ -7,12 +7,23 @@ Following block declares three rules named: `regular_schemas`, `secure_schemas` 
 ```
 regular_schemas = `http` | `ftp`;
 secure_schemas = regular_schemas `s`;
-schemas = secure_schemas | regular_schemas;
+
+schemas = secure_schemas | regular_schemas
+	| `custom_schema`;
 ```
 
 ## Documentation
 
-*TODO*
+```
+# Gramat currently only supports single-line comments.
+full_name = # They can be inserted in
+	letter+ # any place where a whitespace is expected
+	# The comment ends where the line ends
+	( space+ letter+ # 
+	# (that is the \n character)
+	);
+# .
+```
 
 ## String Property
 
