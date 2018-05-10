@@ -11,7 +11,7 @@ The grammar is conformed by a finite number of rules. The rules are defined usin
 It is possible to give a name to a rule and make reference later. Considerations:
 
 - There cannot be two rules with the same name.
-- The names follow the [name syntax](#name_syntax).
+- The names follow the [name syntax](#name-syntax).
 
 ```
 name = rule ;
@@ -33,7 +33,7 @@ A rule by itself is able to capture text and generate a map after being evaluate
 
 Defines a plain property in the current object taking the value from the captured text in the rule evaluation. If the rule doesn't match, no value will be considered (not even `null`).
 
-Only [String](#string_property), [Number](#number_property), [Boolean](#boolean_property) and [Null](#null_property) are considered plain values.
+Only [String](#string-property), [Number](#number-property), [Boolean](#boolean-property) and [Null](#null-property) are considered plain values.
 
 ### String Property
 
@@ -80,7 +80,7 @@ Creates a new empty object and evaluates the rule into it. Only if the rule matc
 
 Adds a new item in a property every time the rule matches.
 
-Any [plain](#plain_property_rule) or [object](#object_property_rule) property definition can be converted to an array definition by adding a `+` before the `:`.
+Any [plain](#plain-property-rule) or [object](#object-property-rule) property definition can be converted to an array definition by adding a `+` before the `:`.
 
 Considerations when adding the new item:
 
@@ -113,7 +113,7 @@ The literal value must exactly match when evaluated. Both *Apostrophe (U+0027)* 
 
 ### Flexible Literal
 
-The literal value matches depending on [the configuration](#flexible_literal_configuration). The delimiter for this type is the *Grave accent (U+0060)* <code>&#96;</code>.
+The literal value matches depending on [the configuration](#flexible-literal-configuration). The delimiter for this type is the *Grave accent (U+0060)* <code>&#96;</code>.
 
 
 ```
@@ -215,7 +215,7 @@ The default value for all configurations is `false`.
 
 In the Grammar Language several elements can have or require a name. All names can be built using following syntax:
 
-- If the name doesn't contain [whitespaces](#whitespace) or a [special character](#special_characters), it can be written just as it is. Examples:
+- If the name doesn't contain [whitespaces](#whitespace) or a [special character](#special-characters), it can be written just as it is. Examples:
 
 ```
 LastName
@@ -273,7 +273,7 @@ To avoid unexpected results introduced by the operating system, following unesca
 
 ## Whitespace
 
-The whitespaces can be placed in any amount between most characters. The blocks of code used among the [Grammar Language](#grammar_language) section only add whitespaces when is possible.
+The whitespaces can be placed in any amount between most characters. The blocks of code used among the [Grammar Language](#grammar-language) section only add whitespaces when is possible.
 
 The recognized whitespaces are: _Space_ (`U+0020`), _Horizontal tab_ (`U+0009`), _Line feed_ (`U+000A`) and _Carriage return_ (`U+000D`). All other whitespace characters defined in Unicode are considered illegal.
 
