@@ -2,7 +2,13 @@
 
 ## Declaration
 
-*TODO*
+Following block declares three rules named: `regular_schemas`, `secure_schemas` and `schemas`.
+
+```
+regular_schemas = `http` | `ftp`;
+secure_schemas = regular_schemas `s`;
+schemas = secure_schemas | regular_schemas;
+```
 
 ## Documentation
 
@@ -16,7 +22,7 @@
 <username: alphanum+> ('@' <domain: alphanum+ ('.' alphanum+)+>)?
 ```
 
-#### Examples
+#### Evaluations
 
 ```javascript
 // input:
