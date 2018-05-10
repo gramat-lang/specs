@@ -1,7 +1,14 @@
+# Examples
 
-# Appendix 2: Examples
+## Declaration
 
-## String Property Example
+*TODO*
+
+## Documentation
+
+*TODO*
+
+## String Property
 
 **Rule:**
 
@@ -22,7 +29,11 @@ rule.eval('antonio78@')
 // error, it doesn't match
 ```
 
-## Boolean Property Example
+## Number Property
+
+*TODO*
+
+## Boolean Property
 
 **Rule:**
 
@@ -45,7 +56,25 @@ eval("description INT NULL")
 { "isNotNull": false }
 ```
 
-## Sequence Example
+## Null Property
+
+*TODO*
+
+## Object Property
+
+*TODO*
+
+## Array Property
+
+*TODO*
+
+## Strict Literals
+
+*TODO*
+
+## Flexible Literals
+
+## Conjunction Sequences
 
 **Example:**
 
@@ -53,8 +82,34 @@ eval("description INT NULL")
 alpha+ whitespace  "=" whitespace digit+
 ```
 
-...
+## Disjunction Sequences
 
-# Appendix 3: Quick Reference
+*TODO*
 
-...
+## Equivalent Group
+
+*TODO*
+
+## Complement Group
+
+*TODO*
+
+## Zero or one
+
+*TODO*
+
+## Zero or more
+
+*TODO*
+
+## One or more
+
+*TODO*
+
+## Custom repetitions
+
+*TODO*
+
+## References
+
+*TODO*
