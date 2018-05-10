@@ -1,5 +1,7 @@
 # GRAMAT
 
+*PLEASE NOTICE THAT THIS IS WORK IN PROGRESS...*
+
 Grammar language for parsing a collection of name/value pairs.
 
 # Grammar Language
