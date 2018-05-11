@@ -1,4 +1,4 @@
-# Grammar Language
+# Statements
 
 The grammar is conformed by a finite number of rules. The rules are defined using a language similar to the regular expressions of most programming languages but adapted to describe a collection of name/value pairs (_map_ in this document).
 
