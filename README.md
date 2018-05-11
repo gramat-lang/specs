@@ -11,4 +11,6 @@ Grammar language for parsing a collection of name/value pairs.
 
 ## Features
 
-**Template**: A template takes one or more parameters to produce an expression. This is specially util to avoid repeat patterns across the grammar.
+### Template
+
+A template takes one or more parameters to produce an expression. This is specially util to avoid repeat patterns across the grammar.
