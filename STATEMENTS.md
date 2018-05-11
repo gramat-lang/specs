@@ -2,16 +2,11 @@
 
 Complex grammar can be constructed easily by using statements. An statement tells to the engine how to build the grammar step by step. In the *Gramat Language* all statements end with a semicolon `;`.
 
-### Rule Declaration
+## Expression Declaration
 
-It is possible to give a name to a rule and make reference later. Considerations:
+Registers an expression in the engine with a [valid name](#name-syntax).
 
-- There cannot be two rules with the same name.
-- The names follow the [name syntax](#name-syntax).
-
-```
-name = rule ;
-```
+*name* `=` *expression* `;`
 
 ## Template Declaration
 
