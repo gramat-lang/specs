@@ -1,5 +1,7 @@
 # Expressions
 
+The expressions are defined using a language similar to the regular expressions of most programming languages but adapted to describe a collection of name/value pairs (_map_ in this document).
+
 ## Plain Property Rule
 
 Defines a plain property in the current object taking the value from the captured text in the rule evaluation. If the rule doesn't match, no value will be considered (not even `null`).
