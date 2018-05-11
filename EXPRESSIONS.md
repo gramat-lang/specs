@@ -14,42 +14,37 @@ Only [String](#string-property), [Number](#number-property), [Boolean](#boolean-
 
 The property value will be exactly the same than the captured text.
 
-```
-< name : rule >
-```
+`<` *name* `:` *expression* `>`
 
 ## Number Property
 
 The property value will be the result of parsing the captured text to a number. If the captured text is not a valid number an error will be thrown.
 
-```
-< name :# rule >
-```
+`<` *name* `:#` *expression* `>`
 
 ## Boolean Property
 
 The property value can be either `true` or `false` and is only set if the rule matches, the captured text is ignored.
 
-```
-< name :? rule >    # for `true`
-< name :! rule >    # for `false`
-```
+For `true` values:
+
+`<` *name* `:?` *expression* `>`
+
+For `false` values:
+
+`<` *name* `:!` *expression* `>`
 
 ## Null Property
 
 The property value will be `null` when the rule matches, the captured text is ignored.
 
-```
-< name :@ rule >
-```
+`<` *name* `:@` *expression* `>`
 
 # Object Property
 
 Creates a new empty object and evaluates the rule into it. Only if the rule matches, the new object is set to a property in the current object.
 
-```
-{ name : rule }
-```
+`{` *name* `:` *expression* `}`
 
 # Array Property
 
