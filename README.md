@@ -127,11 +127,11 @@ The literal value must exactly match when evaluated. Both *Apostrophe (U+0027)* 
 
 ### Flexible Literal
 
-The literal value matches depending on [the configuration](#flexible-literal-configuration). The delimiter for this type is the *Grave accent (U+0060)* <code>&#96;</code>.
+The literal value matches depending on [the configuration](#flexible-literal-configuration). The delimiter for this type is the *Tilde (U+007E)* `~`.
 
 
 ```
-`...`
+~...~
 ```
 
 ## Sequence Rule
@@ -249,13 +249,13 @@ create_table
 tH15%15$w31rD
 ```
 
-- If the name contains whitespaces it must be written as a delimited string, valid delimiters are only *Apostrophe (U+0027)* `'` and *Quotation mark (U+0022)* `"`.
+- If the name contains whitespaces it must be written as a delimited string, valid delimiter is *Grave accent (U+0060)* <code>&#96;</code>.
 
 ```
-'First name'
-"= :oh why?: ="
-'1+1'
-"stillValid"
+`First name`
+`= :oh why?: =`
+`1+1`
+`stillValid`
 ```
 
 From the point of view of the extensibility of the Grammar Language, it is a good practice always use the delimited string way for names with symbols other than *Low line (U+005F)* `_`, *Basic Latin Alphabet* and *Basic Latin Digits*.
