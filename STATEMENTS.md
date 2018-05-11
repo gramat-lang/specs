@@ -1,38 +1,26 @@
 # Statements
 
-Complex grammar can be constructed easily by using statements. An statement tells to the engine how to build the grammar step by step. In the *Gramat Language* all statements end with a semicolon `;`.
+Complex grammar can be constructed easily by using statements. An statement tells to the [engine](README.md#engine) how to build the grammar step by step. In the [Gramat Language](README.md#gramat-language) all statements end with a semicolon `;`.
 
 ## Expression Declaration
 
-Registers an expression in the engine with a [valid name](#name-syntax).
+Registers an [expression](README.md#expression) in the engine with a [valid name](#name-syntax).
 
 *name* `=` *expression* `;`
 
 ## Template Declaration
 
-A template takes one or more parameters to produce another rule. This is specially util to avoid repeat patterns across the grammar.
+Registers a [template](README.md#template) in the engine with a valid name. 
 
-```
-name [ param1 , param2 , ...paramN ] = rule ;
-```
+*name* `[` *param1* `,` *param2* `,` *...paramN* `]` `=` *rule* `;`
 
-- `name` is the name of the template. It must follow the [name syntax](#) and be unique.
-- `param1 , param2 , ...paramN` represents a comma separated list of names which are the parameters of the function.
-- `rule` can be any rule definition. The parameter names are available here to use them anywhere as replacements. The name collisions are solved in the order of first the local and then the global.
-
-### Documentation
+## Comments
 
 It is possible to add single-line comments in any part of the definition. A comment starts with `#` and ends with the *Line feed (U+000A)*.
 
 ```
 # this is a comment
 ```
-
-### Rules
-
-A rule by itself is able to capture text and generate a map after being evaluated.
-
-
 
 # Appendix 1
 
