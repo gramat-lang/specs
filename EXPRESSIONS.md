@@ -1,14 +1,16 @@
 # Expressions
 
-The expressions are defined using a language similar to the regular expressions of most programming languages but adapted to describe a collection of name/value pairs (_map_ in this document).
+An expression by itself, when evaluated, is able to generate a collection of name/value pairs by capturing and processing characters.
 
-## Plain Property Rule
+The expressions are defined using a language similar to the regular expressions of most programming languages but adapted to support complex operations.
+
+# Plain Property
 
 Defines a plain property in the current object taking the value from the captured text in the rule evaluation. If the rule doesn't match, no value will be considered (not even `null`).
 
 Only [String](#string-property), [Number](#number-property), [Boolean](#boolean-property) and [Null](#null-property) are considered plain values.
 
-### String Property
+## String Property
 
 The property value will be exactly the same than the captured text.
 
@@ -16,7 +18,7 @@ The property value will be exactly the same than the captured text.
 < name : rule >
 ```
 
-### Number Property
+## Number Property
 
 The property value will be the result of parsing the captured text to a number. If the captured text is not a valid number an error will be thrown.
 
@@ -24,7 +26,7 @@ The property value will be the result of parsing the captured text to a number. 
 < name :# rule >
 ```
 
-### Boolean Property
+## Boolean Property
 
 The property value can be either `true` or `false` and is only set if the rule matches, the captured text is ignored.
 
@@ -33,7 +35,7 @@ The property value can be either `true` or `false` and is only set if the rule m
 < name :! rule >    # for `false`
 ```
 
-### Null Property
+## Null Property
 
 The property value will be `null` when the rule matches, the captured text is ignored.
 
@@ -41,7 +43,7 @@ The property value will be `null` when the rule matches, the captured text is ig
 < name :@ rule >
 ```
 
-## Object Property Rule
+# Object Property
 
 Creates a new empty object and evaluates the rule into it. Only if the rule matches, the new object is set to a property in the current object.
 
@@ -49,7 +51,7 @@ Creates a new empty object and evaluates the rule into it. Only if the rule matc
 { name : rule }
 ```
 
-## Array Property Rule
+# Array Property
 
 Adds a new item in a property every time the rule matches.
 
@@ -71,31 +73,31 @@ Considerations when adding the new item:
 { name +: rule }     # adds a new Object item
 ```
 
-## Literal Rule
+# Character Sequence
 
-Can match a sequence of characters. The matching algorithm depends on the type of the literal, there are only two types: _Strict_ and _Flexible_.
+Can match a sequence of characters. The matching algorithm depends on the type of the character sequence, there are only two types: _Strict_ and _Flexible_.
 
-### Strict Literal
+## Strict Character Sequence
 
-The literal value must exactly match when evaluated. Both *Apostrophe (U+0027)* `'` and *Quotation mark (U+0022)* `"` are accepted to delimit the value.
+The character sequence value must exactly match when evaluated. Both *Apostrophe (U+0027)* `'` and *Quotation mark (U+0022)* `"` are accepted to delimit the value.
 
 ```
 "..."
 '...'
 ```
 
-### Flexible Literal
+## Flexible Character Sequence
 
-The literal value matches depending on [the configuration](#flexible-literal-configuration). The delimiter for this type is the *Tilde (U+007E)* `~`.
+The character sequence value matches depending on [the configuration](#flexible-literal-configuration). The delimiter for this type is the *Tilde (U+007E)* `~`.
 
 
 ```
 ~...~
 ```
 
-## Sequence Rule
+## Expression Sequence
 
-### Conjunction sequence (AND)
+### Conjunction Expression Sequence (AND)
 
 Every rule must match in the same order to consider the sequence matched.
 
@@ -103,7 +105,7 @@ Every rule must match in the same order to consider the sequence matched.
 rule1 rule2 rule3 ... ruleN
 ```
 
-### Disjunction sequence (OR)
+### Disjunction Expression Sequence (OR)
 
 Only one rule must match to consider the sequence matched.
 
@@ -111,7 +113,7 @@ Only one rule must match to consider the sequence matched.
 rule1 | rule2 | ... ruleN
 ```
 
-## Group Rule
+## Group
 
 ### Equivalent Group
 
@@ -129,7 +131,7 @@ The inner rule **must NOT** match to consider the group matched.
 (! rule )
 ```
 
-## Quantification Rules
+## Quantification
 
 ### Zero or one
 
@@ -163,7 +165,7 @@ rule{N,}     # N or more times
 rule{N,M}    # at least N times, but not more than M times
 ```
 
-## Reference Rule
+## Reference
 
 The rule to be evaluated will be searched in the context using the specified name. If the rule is not defined an error will be thrown.
 
@@ -171,7 +173,7 @@ The rule to be evaluated will be searched in the context using the specified nam
 name
 ```
 
-## Template Call Rule
+## Template Call
 
 Calls an existing function passing the specified rules as arguments to be processed and the resulting rule is evaluated.
 
