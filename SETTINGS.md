@@ -3,7 +3,7 @@
 
 The default value for all configurations is `false`.
 
-## Flexible Literal Configuration
+# Flexible Character Sequence
 
 | Key | Description
 |---|---
