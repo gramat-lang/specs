@@ -16,8 +16,8 @@ Registers a [template](README.md#template) in the engine with a valid name.
 
 ## Comments
 
-It is possible to add single-line comments in any part of the definition. A comment starts with `#` and ends with the *Line feed (U+000A)*.
+It is possible to add comments in any part where a whitespace is accepted. The comments start with `/*` and end with `*/`, there is no way to escape the closing symbol but can contains any other character sequence.
 
 ```
-# this is a comment
+/* this is a comment */
 ```

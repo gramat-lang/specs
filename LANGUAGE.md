@@ -1,10 +1,30 @@
-# Appendix 1
+# Gramat Language
 
-## Name Syntax
+Gramat is a domain-specific language designed for generating a collection of name/value pairs (map) from an input character sequence by using syntactic and semantic rules.
 
-In the Grammar Language several elements can have or require a name. All names can be built using following syntax:
+The lenguage can be divided in two major groups: [Statements](STATEMENTS.ms) and [Expressions](EXPRESSIONS.md). Both can be compiled but only the expressions can be evaluated and generate maps.
 
-- If the name doesn't contain [whitespaces](#whitespace) or a [special character](#special-characters), it can be written just as it is. Examples:
+In practice, the code is normally compiled and evaluated on runtime by an [engine](ENGINE.md) written in the host language.
+
+Gramat syntax is conformed by following symbols:
+
+- [Text Tokens](#text-tokens)
+- [Integer Tokens](#integer-tokens)
+- [Delimited Strings](#delimited-strings)
+- [Special characters](#special-characters)
+- [Whitespace](#whitespaces)
+
+## Text Tokens
+
+A text token represents a piece of text used for:
+
+- Naming declared [expressions](STATEMENTS.md#expression-declaration) and [templates](STATEMENTS.md#template-declaration).
+- [Referencing declared elements](EXPRESSIONS.md#reference).
+- [Passing arguments to templates](EXPRESSIONS.md#template-call).
+
+Syntax:
+
+- If the text doesn't contain [whitespaces](#whitespaces) or a [special character](#special-characters), it can be written just as it is. Examples:
 
 ```
 LastName
@@ -13,59 +33,287 @@ create_table
 tH15%15$w31rD
 ```
 
-- If the name contains whitespaces it must be written as a delimited string, valid delimiter is *Grave accent (U+0060)* <code>&#96;</code>.
+- If the text contains whitespaces it must be written as a *Grave accent* <code>&#96;</code> [delimited string](#delimited-string). Examples:
 
 ```
 `First name`
-`= :oh why?: =`
+`= :?: =`
 `1+1`
 `stillValid`
 ```
 
-From the point of view of the extensibility of the Grammar Language, it is a good practice always use the delimited string way for names with symbols other than *Low line (U+005F)* `_`, *Basic Latin Alphabet* and *Basic Latin Digits*.
+From the point of view of the extensibility of the Gramat Language, it is a good practice always use the delimited string way for names with symbols other than *Low line* (`_`), *Basic Latin Alphabet* and *Basic Latin Digits*.
 
-## Special Characters
+## Integer Tokens
 
-The following characters are considered special because they have a meaning in the Grammar Language:
+An integer token represents a positive number without decimals used for defining the limits in the repetition expressions:
 
-- *Plus sign (U+002B)* `+`
-- *Colon (U+003A)* `:`
-- *Equal sign (U+003D)* `=`
-- `?`
-- `*`
-- `+`
-- `(`
-- `)`
-- `#`
-- `@`
-- ...
+- [Exact Repetition](EXPRESSIONS.md#exact-repetition)
+- [Minimum Repetition](EXPRESSIONS.md#minimum-repetition)
+- [Variable Repetition](EXPRESSIONS.md#variable-repetition)
 
-## Delimited String
+Syntax:
 
-Delimited strings are used in several ways in the Grammar Language. They are built starting with a delimiter character, the string ends when another delimiter character is found considering the exceptions in the next paragraphs. The resulting characters between the delimiters conforms the value of the string.
+- Any sequence of one or more *Basic Latin Digits* is considered an integer token. Examples:
 
-### Integers
+```
+1
+99
+00000
+0123456789
+```
+
+## Delimited Strings
+
+A delimited string represents a piece of text with a specific meaning, the delimiter depends on the mening, they are used for:
+
+- [Text Tokens](#text-tokens)
+- [Strict Character Sequence](EXPRESSIONS.md#strict-character-sequence)
+- [Flexible Character Sequence](EXPRESSIONS.md#flexible-character-sequence)
+
+Delimited strings are built starting with a delimiter character, the string ends when another delimiter character is found considering the exceptions in the next paragraphs. The resulting characters between the delimiters conforms the value of the string.
 
 ### String Content
 
+It can be a sequence of any character except the string delimiter, *Line feed* and *Carriage return* (last two to avoid unexpected results introduced by the operating system).
+
 Following character sequences can be used inside the delimiters to escape the specific character:
 
-- `\"` → *Quotation mark  `"` (U+0022)*
-- `\'` → *Apostrophe `'` (U+0027)*,
-- <code>&#92;&#96;</code> → *Grave accent <code>&#96;</code> (U+0060)*
-- `\\` → *Backslash `\` (U+005C)*
-- `\/` → *Slash `/` (U+002F)*
-- `\b` → *Backspace (U+0008)*
-- `\f` → *Form feed (U+000C)*
-- `\n` → *Line feed (U+000A)*
-- `\r` → *Carriage return (U+000D)*
-- `\t` → *Horizontal tab (U+0009)*
+- `\"` → *Quotation mark* (`"`)
+- `\'` → *Apostrophe* (`'`)
+- <code>&#92;&#96;</code> → *Grave accent* (<code>&#96;</code>)
+- `\\` → *Backslash* (`\`)
+- `\/` → *Slash* (`/`)
+- `\b` → *Backspace*
+- `\f` → *Form feed*
+- `\n` → *Line feed*
+- `\r` → *Carriage return*
+- `\t` → *Horizontal tab*
 - `\u` + 4 hexadecimal digits → corresponding Unicode character
 
-To avoid unexpected results introduced by the operating system, following unescaped characters can't be used inside the delimiters: *Line feed (U+000A)* and *Carriage return (U+000D)*.
+## Special Characters
 
-## Whitespace
+The following characters are considered special because they have a meaning in the Gramat Language:
 
-The whitespaces can be placed in any amount between most characters. Syntax definitions always add whitespaces when is possible.
+<table>
+  <thead>
+    <tr>
+      <th>Character</th>
+      <th>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><em>Exclamation mark</em> (<code>!</code>)</td>
+      <td>
+        <ul>
+          <li>After a <em>Left parenthesis</em> <code>(!</code>, indicates a <a href="EXPRESSIONS.md#complement-group">Complement Group</a>.</li>
+          <li>After a <em>Colon</em> <code>:!</code>, indicates a <a href="EXPRESSIONS.md#false-property">False Property</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Quotation mark</em> (<code>"</code>)</td>
+      <td>
+        <ul>
+          <li>Opens and closes a <a href="EXPRESSIONS.md#strict-character-sequence">Strict Character Sequence</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Number sign</em> (<code>#</code>)</td>
+      <td>
+        <ul>
+          <li>After a <em>Colon</em> <code>:#</code>, indicates a <a href="EXPRESSIONS.md#number-property">Number Property</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Apostrophe</em> (<code>'</code>)</td>
+      <td>
+        <ul>
+          <li>Opens and closes a <a href="EXPRESSIONS.md#strict-character-sequence">Strict Character Sequence</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Left parenthesis</em> (<code>(</code>)</td>
+      <td>
+        <ul>
+          <li>Opens an <a href="EXPRESSIONS.md#equivalent-group">Equivalent Group</a> or if followed by an <em>Exclamation mark</em> <code>(!</code> a <a href="#complement-group">Complement Group</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Right parenthesis</em> (<code>)</code>)</td>
+      <td>
+        <ul>
+          <li>Can close either an <a href="EXPRESSIONS.md#equivalent-group">Equivalent Group</a> or a <a href="#complement-group">Complement Group</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Asterisk</em> (<code>*</code>)</td>
+      <td>
+        <ul>
+          <li>After an expression, indicates a <a href="EXPRESSIONS.md#zero-or-more-repetition">Zero or More Repetition</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Plus sign</em> (<code>+</code>)</td>
+      <td>
+        <ul>
+          <li>After an expression, indicates a <a href="EXPRESSIONS.md#one-or-more-repetition">One or More Repetition</a>.</li>
+          <li>Before a <em>Colon</em> <code>+:</code>, indicates an <a href="EXPRESSIONS.md#array-property">Array Property</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Comma</em> (<code>,</code>)</td>
+      <td>
+        <ul>
+          <li>Separates the parameters of a <a href="STATEMENTS.md#template-declaration">Template Declaration</a>.</li>
+          <li>Separates the arguments of a <a href="STATEMENTS.md#template-call">Template Call</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Slash</em> (<code>/</code>)</td>
+      <td>
+        <ul>
+          <li>Before an <em>Asterisk</em> <code>/*</code>, opens a <a href="STATEMENTS.md#comments">Comment</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Colon</em> (<code>:</code>)</td>
+      <td>
+        <ul>
+          <li>In a <a href="EXPRESSIONS.md#plain-property">Plain Property</a> and <a href="EXPRESSIONS.md#object-property">Object Property</a>, separates the name from the expression.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Semicolon</em> (<code>;</code>)</td>
+      <td>
+        <ul>
+          <li>Ends a <a href="STATEMENTS.md">Statement</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Less-than sign</em> (<code><</code>)</td>
+      <td>
+        <ul>
+          <li>Opens a <a href="EXPRESSIONS.md#plain-property">Plain Property</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Equal sign</em> (<code>=</code>)</td>
+      <td>
+        <ul>
+          <li>Separates the name from the expression in a <a href="STATEMENTS.md#expression-declaration">Expression Declaration</a>.</li>
+          <li>Separates the name and the parameters from the expresion in a <a href="STATEMENTS.md#template-declaration">Template Declaration</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Greater-than sign</em> (<code>></code>)</td>
+      <td>
+        <ul>
+          <li>Closes a <a href="EXPRESSIONS.md#plain-property">Plain Property</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Question mark</em> (<code>?</code>)</td>
+      <td>
+        <ul>
+          <li>After an expression, indicates a <a href="EXPRESSIONS.md#zero-or-one-repetition">Zero or One Repetition</a>.</li>
+          <li>After a <em>Colon</em> <code>:?</code>, indicates a <a href="EXPRESSIONS.md#true-property">True Property</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Commercial at</em> (<code>@</code>)</td>
+      <td>
+        <ul>
+          <li>After a <em>Colon</em> <code>:@</code>, indicates a <a href="EXPRESSIONS.md#null-property">Null Property</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Left Square Bracket</em> (<code>[</code>)</td>
+      <td>
+        <ul>
+          <li>Opens the parameter declaration in a <a href="STATEMENTS.md#template-declaration">Template Declaration</a>.</li>
+          <li>Opens the arguments list of a <a href="EXPRESSIONS.md#template-call">Template Call</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Right Square Bracket</em> (<code>]</code>)</td>
+      <td>
+        <ul>
+          <li>Closes the parameter declaration in a <a href="STATEMENTS.md#template-declaration">Template Declaration</a>.</li>
+          <li>Closes the arguments list of a <a href="EXPRESSIONS.md#template-call">Template Call</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Grave accent</em> (<code>`</code>)</td>
+      <td>
+        <ul>
+          <li>Opens and closes a <a href="#text-tokens">Text Token</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Left Curly Bracket</em> (<code>{</code>)</td>
+      <td>
+        <ul>
+          <li>Opens an <a href="EXPRESSIonS.md#object-property">Object Property</a>.</li>
+          <li>Opens an <a href="EXPRESSIONS.md#exact-repetition">exact</a>, <a href="EXPRESSIONS.md#minimum-repetition">minimum</a> or <a href="EXPRESSIONS.md#variable-repetition">variable</a> repetition.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Vertical bar</em> (<code>|</code>)</td>
+      <td>
+        <ul>
+          <li>Between two expressions, indicates a <a href="EXPRESSIONS.md#disjunction-sequence">Disjunction Sequence</a>.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Right Curly Bracket</em> (<code>}</code>)</td>
+      <td>
+        <ul>
+          <li>Closes an <a href="EXPRESSIonS.md#object-property">Object Property</a>.</li>
+          <li>Closes an <a href="EXPRESSIONS.md#exact-repetition">exact</a>, <a href="EXPRESSIONS.md#minimum-repetition">minimum</a> or <a href="EXPRESSIONS.md#variable-repetition">variable</a> repetition.</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td><em>Tilde</em> (<code>~</code>)</td>
+      <td>
+        <ul>
+          <li>Opens and closes a <a href="EXPRESSIONS.md#flexible-character-sequence">Flexible Character Sequence</a>.</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-The recognized whitespaces are: _Space_ (`U+0020`), _Horizontal tab_ (`U+0009`), _Line feed_ (`U+000A`) and _Carriage return_ (`U+000D`). All other whitespace characters defined in Unicode are considered illegal.
+## Whitespaces
+
+The whitespaces can be placed in any amount between most characters. The recognized whitespaces are:
+
+- *Space*
+- *Horizontal tab*
+- *Line feed* and
+- *Carriage return*
+
+All other whitespace characters defined in Unicode are considered illegal.

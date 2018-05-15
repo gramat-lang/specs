@@ -77,17 +77,21 @@ The character sequence value matches depending on [the settings](SETTINGS.md#fle
 
 `~` *content* `~`
 
-# Conjunction Sequence (AND)
+# Conjunction Sequence
 
 Every rule must match in the same order to consider the sequence matched.
 
 *expression1* *expression2* *...expressionN*
 
-# Disjunction Sequence (OR)
+This form can be considered as an `AND` operator.
+
+# Disjunction Sequence
 
 Only one rule must match to consider the sequence matched.
 
 *expression1* `|` *expression2* `|` *...expressionN*
+
+This form can be considered as an `OR` operator.
 
 # Equivalent Group
 
@@ -95,25 +99,27 @@ The inner rule must match to consider the group matched. This rule is specially 
 
 `(` *expression* `)`
 
-# Complement Group (NOT)
+# Complement Group
 
 The inner rule **must NOT** match to consider the group matched.
 
 `(!` *expression* `)`
 
-# Zero or one
+This form can be considered as a `NOT` operator.
+
+# Zero or One Repetition
 
 The rule is optional and matched at most once.
 
 *expression*`?`
 
-# Zero or more
+# Zero or More Repetition
 
 The rule will be matched zero or more times.
 
 *expression*`*`
 
-# One or more
+# One or More Repetition
 
 The rule will be matched one or more times.
 
@@ -121,17 +127,17 @@ The rule will be matched one or more times.
 
 # Exact Repetition
 
-*expression*`{` [*amount*](LANGUAGE.md#integers) `}`
+*expression*`{` [*amount*](LANGUAGE.md#integer-tokens) `}`
 
 # Minimum Repetition
 
-*expression*`{` [*minimum*](LANGUAGE.md#integers) `,` `}`
+*expression*`{` [*minimum*](LANGUAGE.md#integer-tokens) `,` `}`
 
 # Variable Repetition
 
 at least N times, but not more than M times
 
-*expression*`{` [*minimum*](LANGUAGE.md#integers) `,` [*maximum*](LANGUAGE.md#integers) `}`
+*expression*`{` [*minimum*](LANGUAGE.md#integer-tokens) `,` [*maximum*](LANGUAGE.md#integer-tokens) `}`
 
 # Reference
 
