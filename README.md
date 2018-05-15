@@ -1,17 +1,49 @@
-# GRAMAT
+# Gramat
 
-*PLEASE NOTICE THAT THIS IS WORK IN PROGRESS...*
+Gramat is a language for parsing a collection of name/value pairs, currently available to use it in ~~Java~~ and ~~JavaScript~~.
 
-Grammar language for parsing a collection of name/value pairs.
+## Getting Started
 
-1. [Gramat Language](LANGUAGE.md)
-    1. [Statements](STATEMENTS.md)
-    2. [Expressions](EXPRESSIONS.md)
-    3. [Examples](EXAMPLES.md)
-    4. [Settings](SETTINGS.md)
+Take a look to the [TL;DR](TLDR.md) and this Gramat example:
 
-## Features
+```
+entry = <name: (! "=" | "&" | "#")* > ("=" <value: (! "&" | "#")* >)?;
+url = <baseUrl: ((! ":")+ "://")? (! "/")* >
+    <path: (! "?")* >
+    ( {query +: entry} ("&" {query +: entry})* "&"? )?
+    <fragment: "#" any*>?;
+```
 
-### Template
+Evaluation of the `url` expression in the host language:
 
-A template takes one or more parameters to produce an expression. This is specially util to avoid repeat patterns across the grammar.
+```javascript
+result = url.eval('http://bakasoft.org/gramat?ref=github&code=201805#top');
+```
+
+Result of the evaluation:
+
+```json
+{
+    "baseUrl": "http://bakasoft.org",
+    "path": "/gramat",
+    "query": [
+        { "name": "ref", "value": "github" },
+        { "name": "code", "value": "201805" }
+    ],
+    "fragment": "#top"
+}
+```
+
+## Documentation
+
+- [Language basics](LANGUAGE.md)
+    - [Statements](STATEMENTS.md)
+    - [Expressions](EXPRESSIONS.md)
+- [Examples](EXAMPLES.md)
+- [Standard Engine](ENGINE.md)
+    - [Settings](SETTINGS.md)
+- [Appendix](APPENDIX.md)
+
+## License
+
+*Work in progress*

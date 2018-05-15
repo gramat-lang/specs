@@ -6,6 +6,12 @@ The lenguage can be divided in two major groups: [Statements](STATEMENTS.ms) and
 
 In practice, the code is normally compiled and evaluated on runtime by an [engine](ENGINE.md) written in the host language.
 
+## Templates
+
+A template takes one or more parameters to produce an expression. This is specially util to avoid repeat patterns across the grammar.
+
+# Syntax
+
 Gramat syntax is conformed by following symbols:
 
 - [Text Tokens](#text-tokens)
