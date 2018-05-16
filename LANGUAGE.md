@@ -6,9 +6,27 @@ The lenguage can be divided in two major groups: [Statements](STATEMENTS.ms) and
 
 In practice, the code is normally compiled and evaluated on runtime by an [engine](ENGINE.md) written in the host language.
 
-## Templates
+## Regular Expressions
+
+This is the syntactic part of the language, encompasses most common features of regular expressions:
+
+- Character sequences
+- Or
+- Grouping
+- Not
+- Repetitions
+
+## Property Expressions
+
+sdfasdf
+
+## Expression Templates
 
 A template takes one or more parameters to produce an expression. This is specially util to avoid repeat patterns across the grammar.
+
+## Declarations
+
+asdfasd
 
 # Syntax
 
