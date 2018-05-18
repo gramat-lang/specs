@@ -51,7 +51,6 @@ Result of the evaluation:
         1. [Expressions](FEATURES.md#expressions)
         1. [Templates](FEATURES.md#templates)
     1. [Directives](FEATURES.md#directives)
-        1. [Imports](FEATURES.md#imports)
 1. [Syntax](SYNTAX.md)
     1. [Symbols](SYNTAX.md#symbols)
     1. [Constants](SYNTAX.md#constants)

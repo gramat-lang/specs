@@ -31,11 +31,11 @@ Running:
 ```javascript
 items.eval('<>[]<>')
     { items: [ '<>', '[]', '<>' ] }
-    
+
 items.eval(' <item1> [item2] [item3] <item4> ')
     { items: [ '<item1>', '[item2]', '[item3]', '<item3>' ] }
 
-items.eval('[item1> <item2] <item3] [item4>') 
+items.eval('[item1> <item2] <item3] [item4>')
 	// error, it doesn't match
 ```
 
@@ -45,8 +45,8 @@ Following block uses a template to declare a pattern of an attribute definition 
 
 ```
 refAttr[NAME] = ("`" <NAME: (!"`")> "`") | <NAME: alpha ("_" | alphanum)* >;
-tableRef = (refAttr[`schema`] ws* "." ws*)? refAttr[`table`];
-columnRef = tableRef ws* "." ws* refAttr[`column`];
+tableRef = (refAttr[`schema`] ws* "." ws*)? refAttr["table"];
+columnRef = tableRef ws* "." ws* refAttr["column"];
 ```
 
 Running:
@@ -72,7 +72,7 @@ columnRef.eval('`dbo.Invoice.number`') // error
 full_name = # They can be inserted in
 	letter+ # any place where a whitespace is expected
 	# The comment ends where the line ends
-	( space+ letter+ # 
+	( space+ letter+ #
 	# (that is the \n character)
 	);
 # .
@@ -188,3 +188,9 @@ alpha+ whitespace  "=" whitespace digit+
 ## References
 
 *TODO*
+
+# Example 1
+
+```c
+
+```
