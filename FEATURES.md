@@ -122,7 +122,7 @@ Templates take one or more parameters to produce an expression. This is speciall
 
 *name* `[` *param1* `,` *param2* `,` *...paramN* `]` `=` *expression* `;`
 
-The parameters can be referenced in **literally any part** of the expression, they will be **literally** replaced with the actual values when the template is invoked.
+The parameters are declared as identifiers and can be referenced in **literally any part** of the expression, they will be replaced with the corresponding literal value when the template is invoked.
 
 Since a template produces an expression, it can be invoked in any valid part of any expression by using its name and sending the arguments.
 
