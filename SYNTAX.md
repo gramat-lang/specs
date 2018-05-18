@@ -3,16 +3,14 @@
 - [Identifiers](#identifiers)
 - [Literals](#literals)
   - [Strings](#strings)
-  - [Number](#number)
+  - [Numbers](#numbers)
 - [Operators](#operators)
 - [Comments](#comments)
 - [Whitespace](#whitespace)
 
-Complex grammar can be constructed easily by using statements. An statement tells to the [engine](README.md#engine) how to build the grammar step by step. In the [Gramat Language](README.md#gramat-language) all statements end with a semicolon `;`.
-
 ## Identifiers
 
-An identifier is a sequence of characters which the engine can understand. Syntax:
+An identifier is a sequence of characters which has an special mening for the engine. Syntax:
 
 - If the sequence doesn't contain [whitespaces](#whitespaces) or a [special character](#special-characters), it can be written just as it is. Examples:
 
@@ -23,7 +21,7 @@ create_table
 tH15%15$w31rD
 ```
 
-- If the sequence contains whitespaces it must be written as a *Grave accents* <code>&#96;</code> delimited string. Examples:
+- If the sequence contains whitespaces it must be written as a *Grave accents* <code>&#96;</code> [delimited string](APPENDIX.md#delimited-string). Examples:
 
 ```
 `First name`
@@ -36,7 +34,9 @@ It is a good practice always use the delimited-string way for identifiers with c
 
 ## Literals
 
-### String
+A literal is a typed value which have no other meaning than its actual value.
+
+### Strings
 
 A delimited string represents a piece of text with a specific meaning, the delimiter depends on the mening, they are used for:
 
@@ -48,7 +48,7 @@ Delimited strings are built starting with a delimiter character, the string ends
 
 It can be a sequence of any character except the string delimiter, *Line feed* and *Carriage return* (last two to avoid unexpected results introduced by the operating system).
 
-### Number
+### Numbers
 
 An integer token represents a positive number without decimals used for defining the limits in the repetition expressions:
 

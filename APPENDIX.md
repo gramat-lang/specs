@@ -23,7 +23,7 @@
 | Grave accent                     | U+0060  | <code>&#96;</code>
 | Basic Latin Alphabet (lowercase) | U+0061  to U+007A | `a` .. `z`
 
-## Escape Sequences
+## Delimited Strings
 
 Following character sequences can be used inside the delimiters to escape the specific character:
 
@@ -38,3 +38,4 @@ Following character sequences can be used inside the delimiters to escape the sp
 - `\r` → *Carriage return*
 - `\t` → *Horizontal tab*
 - `\u` + 4 hexadecimal digits → corresponding Unicode character
+

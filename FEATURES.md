@@ -1,10 +1,10 @@
 # Gramat Features
 
 - [Regular Expressions](#regular-expressions)
-  - [Literals](#literals)
-  - [Sequences](#sequences)
-  - [Groups](#groups)
-  - [Repetitions](#repetitions)
+  - [Character Sequences](#character-sequences)
+  - [Expression Sequences](#expression-sequences)
+  - [Grouping](#grouping)
+  - [Quantification](#quantification)
 - [Property Expressions](#property-expressions)
   - [Primitives](#primitives)
   - [Objects](#objects)
@@ -31,28 +31,28 @@ Additionaly, Gramat helps to follow the some good practices:
 
 This is the syntactic part of the language, describes how to match and capture the text. Most common features of popular regular expressions are available with a similar syntax.
 
-### Literals
+### Character Sequences
 
 | Syntax                              | Name             | Description
 | ----------------------------------- | ---------------- | -----------
 | `"` *text* `"` <br/> `'` *text* `'` | Strict Literal   | The text must be exactly matched.
 | `~` *text* `~`                      | Flexible Literal | The text matches depending on the [engine settings](#ENGINE.md#flexible-character-sequence).
 
-### Sequences
+### Expression Sequencess
 
 | Syntax                             | Name                 | Description
 | ---------------------------------- | -------------------- | -----------
 | *expr1* *expr2* *...exprN*         | Conjunction Sequence | Every expression must match in the same order to consider the sequence matched. This form can be considered as an `AND` operator.
 | *expr1* `|` *expr2* `|` *...exprN* | Disjunction Sequence | Only one expression must match to consider the sequence matched. This form can be considered as an `OR` operator.
 
-### Groups
+### Grouping
 
 | Syntax                | Name             | Description
 | --------------------- | ---------------- | -----------
 | `(` *expression* `)`  | Equivalent Group | The inner expression must match to consider the group matched. This expression is specially important to group sequences.
 | `(!` *expression* `)` | Complement Group | The inner expression **must NOT** match to consider the group matched. This form can be considered as a `NOT` operator.
 
-### Repetitions
+### Quantification
 
 | Syntax                                      | Name                | Description
 | ------------------------------------------- | ------------------- | -----------
