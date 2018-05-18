@@ -128,7 +128,7 @@ Since a template produces an expression, it can be invoked in any valid part of 
 
 *name* `[` *arg1* `,` *arg2* `,` *...argN* `]`
 
-The arguments can be any valid [identifier](ENGINE.md#identifiers) and the list length must match with the declaration.
+The arguments can be any valid [literal](ENGINE.md#literal) and the list length must match with the declaration.
 
 The templates should not be considered as functions, a more accurate concept is considering them as _Macros_. The templates work at compiling time, read the [Processing Templates](ENGINE.md#processing-templates) section for more details.
 

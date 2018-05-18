@@ -1,7 +1,7 @@
 # Gramat Syntax
 
 - [Identifiers](#identifiers)
-- [Constants](#constants)
+- [Literals](#literals)
   - [Strings](#strings)
   - [Number](#number)
 - [Operators](#operators)
@@ -34,7 +34,7 @@ tH15%15$w31rD
 
 It is a good practice always use the delimited-string way for identifiers with characters other than *Low line* (`_`), *Basic Latin Alphabet* and *Basic Latin Digits*.
 
-## Constants
+## Literals
 
 ### String
 
