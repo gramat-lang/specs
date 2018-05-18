@@ -106,7 +106,7 @@ To keep it simple and straightforward, there is no syntax to allow live two or m
 
 ## Declarations
 
-A declaration occurs when a meaning is given to a [symbol](SYNTAX.md#symbols) converting it to an element. It happens implicitly when [importing](#import), [requiring](#require) or using template parameters and explicitly for the [Rules](#rules) and [Templates](#templates). All kind of declarations follow the [declaring](ENGINE.md#referencing-rules) rules.
+A declaration occurs when a meaning is given to an [identifier](SYNTAX.md#identifiers) converting it to an element. It happens implicitly when [importing](#import), [requiring](#require) or using template parameters and explicitly for the [Rules](#rules) and [Templates](#templates). All kind of declarations follow the [declaring](ENGINE.md#referencing-rules) rules.
 
 The declared elements can be used in any valid part following the [referencing](ENGINE.md#referencing-rules) rules.
 
@@ -128,7 +128,7 @@ Since a template produces an expression, it can be invoked in any valid part of 
 
 *name* `[` *arg1* `,` *arg2* `,` *...argN* `]`
 
-The arguments can be any valid [symbol](ENGINE.md#symbols) and the list length must match with the declaration.
+The arguments can be any valid [identifier](ENGINE.md#identifiers) and the list length must match with the declaration.
 
 The templates should not be considered as functions, a more accurate concept is considering them as _Macros_. The templates work at compiling time, read the [Processing Templates](ENGINE.md#processing-templates) section for more details.
 

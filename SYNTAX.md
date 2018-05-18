@@ -1,6 +1,6 @@
 # Gramat Syntax
 
-- [Symbols](#symbols)
+- [Identifiers](#identifiers)
 - [Constants](#constants)
   - [Strings](#strings)
   - [Number](#number)
@@ -10,9 +10,9 @@
 
 Complex grammar can be constructed easily by using statements. An statement tells to the [engine](README.md#engine) how to build the grammar step by step. In the [Gramat Language](README.md#gramat-language) all statements end with a semicolon `;`.
 
-## Symbols
+## Identifiers
 
-A symbols is a sequence of characters which the engine can use for identifiers and references. Syntax:
+An identifier is a sequence of characters which the engine can understand. Syntax:
 
 - If the sequence doesn't contain [whitespaces](#whitespaces) or a [special character](#special-characters), it can be written just as it is. Examples:
 
@@ -23,7 +23,7 @@ create_table
 tH15%15$w31rD
 ```
 
-- If the sequence contains whitespaces it must be written as a string delimited with *Grave accents* <code>&#96;</code>. Examples:
+- If the sequence contains whitespaces it must be written as a *Grave accents* <code>&#96;</code> delimited string. Examples:
 
 ```
 `First name`
@@ -32,7 +32,7 @@ tH15%15$w31rD
 `stillValid`
 ```
 
-It is a good practice always use the delimited-string way for symbols with characters other than *Low line* (`_`), *Basic Latin Alphabet* and *Basic Latin Digits*.
+It is a good practice always use the delimited-string way for identifiers with characters other than *Low line* (`_`), *Basic Latin Alphabet* and *Basic Latin Digits*.
 
 ## Constants
 

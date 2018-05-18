@@ -52,7 +52,7 @@ Result of the evaluation:
         1. [Templates](FEATURES.md#templates)
     1. [Directives](FEATURES.md#directives)
 1. [Syntax](SYNTAX.md)
-    1. [Symbols](SYNTAX.md#symbols)
+    1. [Identifiers](SYNTAX.md#identifiers)
     1. [Constants](SYNTAX.md#constants)
     1. [Operators](SYNTAX.md#operators)
     1. [Comments](SYNTAX.md#comments)
