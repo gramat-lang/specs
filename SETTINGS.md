@@ -2,7 +2,7 @@
 
 The default value for all configurations is `false`.
 
-#### Flexible Character Sequence
+#### Fuzzy Character Sequences
 
 | Key | Description
 |---|---

@@ -19,49 +19,47 @@
   - [Require](#require)
   - [Set](#set)
 
-[Gramat](README.md) allows to build and test complex grammars by using [Regular Expressions](#regular-expressions) and map any expression as a property by using [Property Expressions](#property-expressions) to produce complex documents.
+[Gramat](README.md) allows to build complex grammars by using [Regular Expressions](#regular-expressions) and produce data documents by converting the regular expressions to [Property Expressions](#property-expressions).
 
-Additionaly, Gramat helps to follow the some good practices:
-
-- Avoids duplication of code by [declaring and referencing expressions](#expressions).
+- Avoids duplication of code by [declaring and referencing expressions](#declarations).
 - Abstracts common patterns by creating [expression templates](#templates).
 - Encourages the separation of concerns by using the [Export](#export) and [Import](#import) directives.
 
 ## Regular Expressions
 
-This is the syntactic part of the language, describes how to match and capture the text. Most common features of popular regular expressions are available with a similar syntax.
+This is the syntactic part of the language, describes how to match and capture the characters. Most common features of popular regular expressions are available with a similar syntax.
 
 ### Character Sequences
 
-| Syntax                              | Name             | Description
-| ----------------------------------- | ---------------- | -----------
-| `"` *text* `"` <br/> `'` *text* `'` | Strict Literal   | The text must be exactly matched.
-| `~` *text* `~`                      | Flexible Literal | The text matches depending on the [engine settings](#ENGINE.md#flexible-character-sequence).
+| Syntax | Description
+| ------ | -----------
+| <pre>"characters" <br/>'characters'</pre> | **Strict Character Sequence** <br/> The characters must be exactly matched.
+| <pre>~characters~</pre> | **Fuzzy Character Sequence** <br/> The characters matches depending on the [fuzzy settings](SETTINGS.md#fuzzy-character-sequences).
 
 ### Expression Sequencess
 
-| Syntax                             | Name                 | Description
-| ---------------------------------- | -------------------- | -----------
-| *expr1* *expr2* *...exprN*         | Conjunction Sequence | Every expression must match in the same order to consider the sequence matched. This form can be considered as an `AND` operator.
-| *expr1* `|` *expr2* `|` *...exprN* | Disjunction Sequence | Only one expression must match to consider the sequence matched. This form can be considered as an `OR` operator.
+| Syntax | Description
+| ------ | -----------
+| <pre>expr1 expr2 ...exprN</pre> | **Conjunction Sequence** <br/> Every expression must match in the same order to consider the sequence matched. This form can be considered as an `AND` operator.
+| <pre>expr1 &#x007C; expr2 &#x007C; ...exprN</pre> | **Disjunction Sequence** <br/> Only one expression must match to consider the sequence matched (the order of evaluation is left to right). This form can be considered as an `OR` operator.
 
 ### Grouping
 
-| Syntax                | Name             | Description
-| --------------------- | ---------------- | -----------
-| `(` *expression* `)`  | Equivalent Group | The inner expression must match to consider the group matched. This expression is specially important to group sequences.
-| `(!` *expression* `)` | Complement Group | The inner expression **must NOT** match to consider the group matched. This form can be considered as a `NOT` operator.
+| Syntax | Description
+| ------ | -----------
+| <pre>( expression )</pre> | **Equivalent Group** <br/> The inner expression must match to consider the group matched. This expression is specially important to group sequences.
+| <pre>(! expression )</pre> | **Complement Group** <br/> The inner expression **must NOT** match to consider the group matched. This form can be considered as a `NOT` operator.
 
 ### Quantification
 
-| Syntax                                      | Name                | Description
-| ------------------------------------------- | ------------------- | -----------
-| *expression*`?`                             | Zero or One         | The expression is optional and matched at most once.
-| *expression*`*`                             | Zero or More        | The expression is matched zero or more times.
-| *expression*`+`                             | One or More         | The expression is matched one or more times.
-| *expression*`{` *amount* `}`                | Exact Repetition    | The expression is matched exactly the specified amount of times.
-| *expression*`{` *minimum* `,` `}`           | Minimum Repetition  | The expression is matched the specified minimum or more times.
-| *expression*`{` *minimum* `,` *maximum* `}` | Variable Repetition | The expression is matched at least the specified minimum times, but not more than the maximum times.
+| Syntax | Description
+| -----  | -----------
+| <pre>expression?</pre> | **Zero or One** <br/> The expression is optional and matched at most once.
+| <pre>expression*</pre> | **Zero or More** <br/> The expression is matched zero or more times.
+| <pre>expression+</pre> | **One or More** <br/> The expression is matched one or more times.
+| <pre>expression{ amount }</pre> | **Exact Repetition** <br/> The expression is matched exactly the specified amount of times.
+| <pre>expression{ minimum , }</pre> | **Minimum Repetition** <br/> The expression is matched the specified minimum or more times.
+| <pre>expression{ minimum , maximum }</pre> | **Variable Repetition** <br/> The expression is matched at least the specified minimum times, but not more than the maximum times.
 
 ## Property Expressions
 
@@ -69,64 +67,72 @@ This is the semantic part of the language, tells to the engine how to create the
 
 ### Primitives
 
-Defines a basic-typed property in the [current object](ENGINE.md#current-object) taking the value from the captured text. If the expression doesn't match, no value will be considered (not even `null`).
+Primitive Properties define a basic-typed property in the [current object](ENGINE.md#current-object) taking the value from the captured characters. If the inner expression doesn't match, no value will be considered (not even `null`).
 
-| Syntax                                      | Name                | Description
-| ------------------------------------------- | ------------------- | -----------
-| `<` *name* `:` *expression* `>` | String Property | The property value will be exactly the same than the captured text.
-| `<` *name* `:#` *expression* `>` | Number Property | The property value will be the result of parsing the captured text to a number. If the captured text is not a valid number an error will be thrown.
-| `<` *name* `:?` *expression* `>` | True Property | The property value will be `true` only if the expression matched. The captured text is ignored.
-| `<` *name* `:!` *expression* `>` | False Property | The property value will be `false` only if the expression matched. The captured text is ignored.
-| `<` *name* `:@` *expression* `>` | Null Property | The property value will be `null` when the expression matches. The captured text is ignored.
+| Syntax | Description
+| ------ | -----------
+| <pre>&lt; &#x0060;name&#x0060; : expression &gt;</pre> | **String Property** <br/> The property value will be exactly the same than the captured characters.
+| <pre>&lt; &#x0060;name&#x0060; :# expression &gt;</pre> | **Number Property** <br/> The property value will be the result of parsing the captured characters to a number. If the captured characters are not a valid number an error will be thrown.
+| <pre>&lt; &#x0060;name&#x0060; :? expression &gt;</pre> | **True Property** <br/> The property value will be `true` only if the expression matched. The captured characters are ignored.
+| <pre>&lt; &#x0060;name&#x0060; :! expression &gt;</pre> | **False Property** <br/> The property value will be `false` only if the expression matched. The captured characters are ignored.
+| <pre>&lt; &#x0060;name&#x0060; :@ expression &gt;</pre> | **Null Property** <br/> The property value will be `null` when the expression matches. The captured characters are ignored.
 
 ### Objects
 
-Creates a new empty object and evaluates the expression into it. Only if the expression matches, the new object is set to a property in the [current object](ENGINE.md#current-object).
+Object Properties create a new empty object and evaluates the inner expression into it. Only if the expression matches, the new object is set to a property in the [current object](ENGINE.md#current-object).
 
-`{` *name* `:` *expression* `}`
+```
+{ `name` : expression }
+```
 
 ### Arrays
 
-Adds a new item in a property every time the expression matches. Any [primitive](#plain-property) or [object](#object-property) property definition can be converted to an array definition by adding a `+` before the `:`.
+Array Properties add a new item in a property every time the inner expression matches. Any [primitive](#plain-property) or [object](#object-property) property can be converted to an array by adding a *Plus sign* (`+`) before the *Colon* (`:`).
 
-`<` *name* `+:`  *expression* `>` <br/>
-`<` *name* `+:#` *expression* `>` <br/>
-`<` *name* `+:?` *expression* `>` <br/>
-`<` *name* `+:!` *expression* `>` <br/>
-`<` *name* `+:@` *expression* `>` <br/>
-`{` *name* `+:`  *expression* `}`
+```
+< `name` +:  expression >
+< `name` +:# expression >
+< `name` +:? expression >
+< `name` +:! expression >
+< `name` +:@ expression >
+{ `name` +:  expression }
+```
 
-Read the [considerations](ENGINE.md#arrays) when adding a new item for more details.
+Read the [Processing Arrays](ENGINE.md#processing-arrays) section for more details.
 
 ## Namespaces
 
-Represent an standalone scope with its own declarations, settings, dependencies and exports. The obvious representation is throught using files but there is no restriction to be stored only in files, Namespaces can be any block of code written in Gramat Language.
+The Namespaces represent an standalone scope with its own declarations, settings, dependencies and exports. The obvious representation is throught using files but there is no restriction to be stored only in files, Namespaces can be any block of code written in Gramat Language.
 
 To keep it simple and straightforward, there is no syntax to allow live two or more namespaces in the same block of code, so there cannot exist *nested* elements.
 
 ## Declarations
 
-A declaration occurs when a meaning is given to an [identifier](SYNTAX.md#identifiers) converting it to an element. It happens implicitly when [importing](#import), [requiring](#require) or using template parameters and explicitly for the [Rules](#rules) and [Templates](#templates). All kind of declarations follow the [declaring](ENGINE.md#referencing-rules) rules.
-
-The declared elements can be used in any valid part following the [referencing](ENGINE.md#referencing-rules) rules.
+A declaration occurs when a meaning is given to an [identifier](SYNTAX.md#identifiers) converting it to an element. It happens implicitly when [importing](#import), [requiring](#require) or using template parameters and explicitly for the [Rules](#rules) and [Templates](#templates). All kind of declarations follow the [declaring](ENGINE.md#referencing-rules) rules and can be used in any valid part following the [referencing](ENGINE.md#referencing-rules) rules.
 
 ### Rules
 
-A named expression is considered a rule. The rules can be referenced in any valid part of any expression by using its name.
+A named expression is considered a rule. The rules can be referenced in any expression by using its name.
 
-*name* `=` *expression* `;`
+```
+`name` = expression ;
+```
 
 ### Templates
 
 Templates take one or more parameters to produce an expression. This is specially util to avoid repeated patterns.
 
-*name* `[` *param1* `,` *param2* `,` *...paramN* `]` `=` *expression* `;`
+```
+`name` [ `param1` , `param2` , `...paramN` ] = expression ;
+```
 
-The parameters are declared as identifiers and can be referenced in **literally any part** of the expression, they will be replaced with the corresponding literal value when the template is invoked.
+The parameters are declared as [identifiers](SYNTAX.md#identifiers) and can be referenced in **literally any part** of the expression, they will be replaced with the corresponding literal value when the template is invoked.
 
-Since a template produces an expression, it can be invoked in any valid part of any expression by using its name and sending the arguments.
+Since a template produces an expression, it can be invoked in any expression by using its name and passing the arguments.
 
-*name* `[` *arg1* `,` *arg2* `,` *...argN* `]`
+```
+`name` [ "arg1" , "arg2" , "...argN" ]
+```
 
 The arguments can be any valid [literal](ENGINE.md#literal) and the list length must match with the declaration.
 
@@ -138,7 +144,11 @@ The templates should not be considered as functions, a more accurate concept is 
 
 Makes *public* the specified elements so that they can be imported in another namespace.
 
-`@export` *elem1* `,` *elem2* `as` *alias2* `,` *...elemN* `;`
+```
+@export `element` ;
+@export `element` as `alias` ;
+@export `elem1`, `elem2`, `...elemN` ;
+```
 
 The non-exported elements are considered _private_ and they are not able to be imported.
 
@@ -146,18 +156,26 @@ The non-exported elements are considered _private_ and they are not able to be i
 
 Makes available in the current namespace the specified elements taking them from the specified namespace.
 
-`@import` *elem1* `,` *elem2* `as` *alias2* `,` *...elemN* `from` *namespace* `;`
+```
+@import `element` from `namespace` ;
+@import `element` as `alias` from `namespace` ;
+@import `elem1` , `elem2` , `...elemN` from `namespace` ;
+```
 
 ## Require
 
 Reserves the specified name and makes it available for referencing it. The engine is responsible to supply the element on runtime.
 
-`@require` *name* `;`
+```
+@require `name` ;
+```
 
 ## Set
 
 Changes the value of the specified setting in the current namespace.
 
-`@set` *setting* `=` *value* `;`
+```
+@set `setting` = value ;
+```
 
 The change is isolated and cannot affect other namespaces.

@@ -1,6 +1,6 @@
 # Gramat
 
-Gramat is a language for parsing a collection of name/value pairs, currently available to use it in ~~Java~~ and ~~JavaScript~~.
+Gramat is a language for creating grammar and parsing a collection of name/value pairs, currently available to use it in ~~Java~~ and ~~JavaScript~~.
 
 ## Getting Started
 
