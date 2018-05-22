@@ -1,18 +1,19 @@
 # Gramat Features
 
-- [Regular Expressions](#regular-expressions)
-  - [Character Sequences](#character-sequences)
-  - [Expression Sequences](#expression-sequences)
-  - [Grouping](#grouping)
-  - [Quantification](#quantification)
-- [Property Expressions](#property-expressions)
-  - [Primitives](#primitives)
-  - [Objects](#objects)
-  - [Arrays](#arrays)
-- [Namespaces](#namespaces)
-- [Declarations](#declarations)
-  - [Expressions](#expressions)
-  - [Templates](#templates)
+- [Gramat Features](#gramat-features)
+  - [Regular Expressions](#regular-expressions)
+    - [Character Sequences](#character-sequences)
+    - [Expression Sequencess](#expression-sequencess)
+    - [Grouping](#grouping)
+    - [Quantification](#quantification)
+  - [Property Expressions](#property-expressions)
+    - [Primitives](#primitives)
+    - [Objects](#objects)
+    - [Arrays](#arrays)
+  - [Namespaces](#namespaces)
+  - [Declarations](#declarations)
+    - [Rules](#rules)
+    - [Templates](#templates)
 - [Directives](#directives)
   - [Export](#export)
   - [Import](#import)
@@ -34,7 +35,7 @@ This is the syntactic part of the language, describes how to match and capture t
 | Syntax | Description
 | ------ | -----------
 | <pre>"characters" <br/>'characters'</pre> | **Strict Character Sequence** <br/> The characters must be exactly matched.
-| <pre>~characters~</pre> | **Fuzzy Character Sequence** <br/> The characters matches depending on the [fuzzy settings](SETTINGS.md#fuzzy-character-sequences).
+| <pre>&#x007E;characters&#x007E;</pre> | **Fuzzy Character Sequence** <br/> The characters matches depending on the [fuzzy settings](SETTINGS.md#fuzzy-character-sequences).
 
 ### Expression Sequencess
 
@@ -87,7 +88,7 @@ Object Properties create a new empty object and evaluates the inner expression i
 
 ### Arrays
 
-Array Properties add a new item in a property every time the inner expression matches. Any [primitive](#plain-property) or [object](#object-property) property can be converted to an array by adding a *Plus sign* (`+`) before the *Colon* (`:`).
+Array Properties add a new item in a property every time the inner expression matches. Any [primitive](#primitives) or [object](#objects) property can be converted to an array by adding a *Plus sign* (`+`) before the *Colon* (`:`).
 
 ```
 < `name` +:  expression >
@@ -102,7 +103,7 @@ Read the [Processing Arrays](ENGINE.md#processing-arrays) section for more detai
 
 ## Namespaces
 
-The Namespaces represent an standalone scope with its own declarations, settings, dependencies and exports. The obvious representation is throught using files but there is no restriction to be stored only in files, Namespaces can be any block of code written in Gramat Language.
+The Namespaces represent an standalone scope with its own declarations, settings, dependencies and exports. Any block of code written in Gramat Language is considered a Namespace. Files are a natural way to store namespaces (the suggested extension is `.gmt`).
 
 To keep it simple and straightforward, there is no syntax to allow live two or more namespaces in the same block of code, so there cannot exist *nested* elements.
 
@@ -134,7 +135,7 @@ Since a template produces an expression, it can be invoked in any expression by 
 `name` [ "arg1" , "arg2" , "...argN" ]
 ```
 
-The arguments can be any valid [literal](ENGINE.md#literal) and the list length must match with the declaration.
+The arguments can be any valid [literal](SYNTAX.md#literals) and the list length must match with the declaration.
 
 The templates should not be considered as functions, a more accurate concept is considering them as _Macros_. The templates work at compiling time, read the [Processing Templates](ENGINE.md#processing-templates) section for more details.
 

@@ -47,11 +47,12 @@ Result of the evaluation:
     1. [Literals](SYNTAX.md#literals)
     1. [Operators](SYNTAX.md#operators)
     1. [Comments](SYNTAX.md#comments)
-    1. [Whitespace](SYNTAX.md#whitespace)
+    1. [Whitespace](SYNTAX.md#whitespaces)
 1. [Settings](SETTINGS.md)
 1. [Engine](ENGINE.md)
 1. [Appendix](APPENDIX.md)
     1. [Referenced Characters](APPENDIX.md#referenced-characters)
+    1. [Delimited Strings](APPENDIX.md#delimited-strings)
 
 ## License
 

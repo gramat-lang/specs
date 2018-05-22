@@ -22,8 +22,13 @@
 | Low line                         | U+005F  | `_`
 | Grave accent                     | U+0060  | <code>&#96;</code>
 | Basic Latin Alphabet (lowercase) | U+0061  to U+007A | `a` .. `z`
+| Tilde                            | U+007E  | `~`
 
 ## Delimited Strings
+
+Delimited strings are built starting with a delimiter character, the string ends when another delimiter character is found considering the exceptions in the next paragraphs. The resulting characters between the delimiters conforms the value of the string.
+
+It can be a sequence of any character except the string delimiter, *Line feed* and *Carriage return* (last two to avoid unexpected results introduced by the operating system).
 
 Following character sequences can be used inside the delimiters to escape the specific character:
 
