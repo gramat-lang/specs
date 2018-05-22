@@ -11,23 +11,10 @@
 
 An identifier is a sequence of characters which has an special mening for the engine. Syntax:
 
-- If the sequence doesn't contain [whitespaces](#whitespaces) or an [operator](#operators), it can be written just as it is. Examples:
-
-```
-LastName
-create_table
-404
-tH15%15$w31rD
-```
-
-- If the sequence contains whitespaces it must be written as a *Grave accent* (<code>&#96;</code>) [delimited string](APPENDIX.md#delimited-strings). Examples:
-
-```
-`First name`
-`= :?: =`
-`1+1`
-`stillValid`
-```
+| Syntax | Example
+| ------ | -------
+| If the sequence doesn't contain [whitespaces](#whitespaces) or an [operator](#operators), it can be written just as it is. | <pre>LastName<br/>create_table<br/>404</pre>
+| If the sequence contains whitespaces it must be written as a *Grave accent* (<code>&#96;</code>) [delimited string](APPENDIX.md#delimited-strings). | <pre>&#96;First name&#96;<br/>&#96;&lt;name: alpha+ &gt;&#96;<br/>&#96;1+1&#96;</pre>
 
 It is a good practice always use the delimited-string way for identifiers with characters other than *Low line* (`_`), *Basic Latin Alphabet* and *Basic Latin Digits*.
 
@@ -35,11 +22,11 @@ It is a good practice always use the delimited-string way for identifiers with c
 
 A literal is a typed value which have no other meaning than its actual value.
 
-| Type    | Syntax | Examples
-| ------- | ----------- | -------
-| String  | [Delimited string](APPENDIX.md#delimited-strings) representing a sequence of characters. | <pre>"text"<br/>'text'<br/>~text~</pre>
-| Number  | One or more continuous *Basic Latin Digits*. | <pre>1<br/>999<br/>00000</pre>
-| Boolean | Could be either `true` or `false`. | <pre>true<br/>false</pre>
+| Syntax | Example
+| ------ | -------
+| **String** <br/> [Delimited string](APPENDIX.md#delimited-strings) representing a sequence of characters. | <pre>"text"<br/>'text'</pre>
+| **Number** <br/> One or more continuous *Basic Latin Digits*. | <pre>123<br/>00000</pre>
+| **Boolean** <br/> Could be either `true` or `false`. | <pre>true<br/>false</pre>
 
 ## Operators
 
