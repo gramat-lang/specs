@@ -1,3 +1,5 @@
+*Work in progress, this file may be outdated...*
+
 # Appendix 1
 
 ## Referenced Characters

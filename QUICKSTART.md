@@ -1,3 +1,5 @@
+*Work in progress, this file may be outdated...*
+
 # Gramat
 
 Gramat is a domain-specific language designed for generating a collection of name/value pairs (map) from an input character sequence by using syntactic and semantic rules.

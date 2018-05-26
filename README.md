@@ -2,6 +2,8 @@
 
 Gramat is a language for creating grammar and parsing a collection of name/value pairs, currently available to use it in ~~Java~~ and ~~JavaScript~~.
 
+> Please consider Gramat is work in progress, to close the first version, it is pending to describe the minimum requirements for an implementation, document the settings, complete the examples, and fix some paragraphs. No major changes are expected to the language itself.
+
 ## Getting Started
 
 Take a look to the [Quick Start](QUICKSTART.md) and this Gramat example:

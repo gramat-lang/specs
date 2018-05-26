@@ -1,3 +1,5 @@
+*Work in progress, this file may be outdated...*
+
 # Examples
 
 ## Rule Declaration
