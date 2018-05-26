@@ -58,4 +58,4 @@ Result of the evaluation:
 
 ## License
 
-*Work in progress*
+[MIT License](LICENSE)
