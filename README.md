@@ -1,6 +1,6 @@
 # Gramat
 
-Gramat is a language for creating grammar and parsing a collection of name/value pairs, currently available to use it in ~~Java~~ and ~~JavaScript~~.
+Gramat is a language for creating grammar and parsing a collection of name/value pairs, currently available to use it in [Java](https://github.com/bakasoft/jgramat) and ~~JavaScript~~.
 
 > Please consider Gramat is work in progress, to close the first version, it is pending to describe the minimum requirements for an implementation, document the settings, complete the examples, and fix some paragraphs. No major changes are expected to the language itself.
 
@@ -9,12 +9,13 @@ Gramat is a language for creating grammar and parsing a collection of name/value
 Take a look to the [Quick Start](QUICKSTART.md) and this Gramat example:
 
 ```c
-/* Practical URL parser */
+@import any from gramat;
+
 entry = <name: (! "=" | "&" | "#")* > ("=" <value: (! "&" | "#")* >)?;
 url = <baseUrl: ((! ":")+ "://")? (! "/")* >
     <path: (! "?")* >
-    ( {query +: entry} ("&" {query +: entry})* "&"? )?
-    <fragment: "#" any*>?;
+    ( "?" {query +: entry} ("&" {query +: entry})* "&"? )?
+    ( "#" <fragment: any*>)?;
 ```
 
 Evaluation of the `url` expression in the host language:
@@ -33,7 +34,7 @@ Result of the evaluation:
         { "name": "ref", "value": "github" },
         { "name": "code", "value": "201805" }
     ],
-    "fragment": "#top"
+    "fragment": "top"
 }
 ```
 
