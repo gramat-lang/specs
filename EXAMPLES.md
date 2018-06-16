@@ -1,4 +1,4 @@
-*Work in progress, this file may be outdated...*
+*Work in progress, this file is outdated...*
 
 # Examples
 

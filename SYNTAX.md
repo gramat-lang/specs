@@ -14,7 +14,7 @@ An identifier is a sequence of characters which has an special mening for the en
 | Syntax | Example
 | ------ | -------
 | If the sequence doesn't contain [whitespaces](#whitespaces) or an [operator](#operators), it can be written just as it is. | <pre>LastName<br/>create_table<br/>404</pre>
-| If the sequence contains whitespaces it must be written as a *Grave accent* (<code>&#96;</code>) [delimited string](APPENDIX.md#delimited-strings). | <pre>&#96;First name&#96;<br/>&#96;&lt;name: alpha+ &gt;&#96;<br/>&#96;1+1&#96;</pre>
+| If the sequence contains whitespaces it must be written as a *Grave accent* (<code>&#96;</code>) [delimited string](APPENDIX.md#delimited-strings). | <pre>&#96;First name&#96;<br/>&#96;name:&lt;alpha+&gt;&#96;<br/>&#96;1+1&#96;</pre>
 
 It is a good practice always use the delimited-string way for identifiers with characters other than *Low line* (`_`), *Basic Latin Alphabet* and *Basic Latin Digits*.
 

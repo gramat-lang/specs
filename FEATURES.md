@@ -72,18 +72,18 @@ Primitive Properties define a basic-typed property in the [current object](ENGIN
 
 | Syntax | Description
 | ------ | -----------
-| <pre>&lt; &#x0060;name&#x0060; : expression &gt;</pre> | **String Property** <br/> The property value will be exactly the same than the captured characters.
-| <pre>&lt; &#x0060;name&#x0060; :# expression &gt;</pre> | **Number Property** <br/> The property value will be the result of parsing the captured characters to a number. If the captured characters are not a valid number an error will be thrown.
-| <pre>&lt; &#x0060;name&#x0060; :? expression &gt;</pre> | **True Property** <br/> The property value will be `true` only if the expression matched. The captured characters are ignored.
-| <pre>&lt; &#x0060;name&#x0060; :! expression &gt;</pre> | **False Property** <br/> The property value will be `false` only if the expression matched. The captured characters are ignored.
-| <pre>&lt; &#x0060;name&#x0060; :@ expression &gt;</pre> | **Null Property** <br/> The property value will be `null` when the expression matches. The captured characters are ignored.
+| <pre>&#x0060;name&#x0060; : &lt; expression &gt;</pre> | **String Property** <br/> The property value will be exactly the same than the captured characters.
+| <pre>&#x0060;name&#x0060; :# &lt; expression &gt;</pre> | **Number Property** <br/> The property value will be the result of parsing the captured characters to a number. If the captured characters are not a valid number an error will be thrown.
+| <pre>&#x0060;name&#x0060; :? &lt; expression &gt;</pre> | **True Property** <br/> The property value will be `true` only if the expression matched. The captured characters are ignored.
+| <pre>&#x0060;name&#x0060; :! &lt; expression &gt;</pre> | **False Property** <br/> The property value will be `false` only if the expression matched. The captured characters are ignored.
+| <pre>&#x0060;name&#x0060; :@ &lt; expression &gt;</pre> | **Null Property** <br/> The property value will be `null` when the expression matches. The captured characters are ignored.
 
 ### Objects
 
 Object Properties create a new empty object and evaluates the inner expression into it. Only if the expression matches, the new object is set to a property in the [current object](ENGINE.md#current-object).
 
 ```
-{ `name` : expression }
+`name` : { expression }
 ```
 
 ### Arrays
@@ -91,12 +91,12 @@ Object Properties create a new empty object and evaluates the inner expression i
 Array Properties add a new item in a property every time the inner expression matches. Any [primitive](#primitives) or [object](#objects) property can be converted to an array by adding a *Plus sign* (`+`) before the *Colon* (`:`).
 
 ```
-< `name` +:  expression >
-< `name` +:# expression >
-< `name` +:? expression >
-< `name` +:! expression >
-< `name` +:@ expression >
-{ `name` +:  expression }
+`name` +:  < expression >
+`name` +:# < expression >
+`name` +:? < expression >
+`name` +:! < expression >
+`name` +:@ < expression >
+`name` +:  { expression }
 ```
 
 Read the [Processing Arrays](ENGINE.md#processing-arrays) section for more details.

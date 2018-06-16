@@ -2,20 +2,20 @@
 
 Gramat is a language for creating grammar and parsing a collection of name/value pairs, currently available to use it in [Java](https://github.com/bakasoft/jgramat) and ~~JavaScript~~.
 
-> Please consider Gramat is work in progress, to close the first version, it is pending to describe the minimum requirements for an implementation, document the settings, complete the examples, and fix some paragraphs. No major changes are expected to the language itself.
+*The [first release](https://github.com/bakasoft/gramat/projects/1) is still in progress.*
 
 ## Getting Started
 
 Take a look to the [Quick Start](QUICKSTART.md) and this Gramat example:
 
-```c
+```
 @import any from gramat;
 
-entry = <name: (! "=" | "&" | "#")* > ("=" <value: (! "&" | "#")* >)?;
-url = <baseUrl: ((! ":")+ "://")? (! "/")* >
-    <path: (! "?")* >
-    ( "?" {query +: entry} ("&" {query +: entry})* "&"? )?
-    ( "#" <fragment: any*>)?;
+entry = name: < (! "=" | "&" | "#")* > ("=" value: < (! "&" | "#")* >)?;
+url = baseUrl: < ((! ":")+ "://")? (! "/")* >
+    path: < (! "?")* >
+    ( "?" query+: { entry } ("&" query+: { entry })* "&"? )?
+    ( "#" fragment: <any*>)?;
 ```
 
 Evaluation of the `url` expression in the host language:
