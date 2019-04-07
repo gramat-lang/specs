@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gramat lang</title>
+  <meta name="description" content="Gramat Language Documentation">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+  <link href="{{ '/assets/css/style.css' | relative_url }}" rel="stylesheet" />
+</head>
+<body lang="en">
+
+{{content}}
+
+<script type="text/javascript">
+hljs.initHighlightingOnLoad();
+</script>
+<script type="text/javascript">
+  ['h1', 'h2', 'h3'].forEach(tag => {
+    for (const element of document.getElementsByTagName(tag)) {
+      const content = element.innerText;
+      const id = element.getAttribute('id');
+      if (id && id.length > 0) {
+        element.innerHTML = `<a href="#${id}">${content}</a>`;
+      }
+    }
+  });
+</script>
+<script src="{{ '/assets/scripts/gramat-highlight.js' | relative_url }}"></script>
+</body>
+</html>

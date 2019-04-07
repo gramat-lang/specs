@@ -1,1 +1,31 @@
-theme: jekyll-theme-slate
+title: Gramat Language
+port: 9437
+exclude:
+  - README.md
+sass:
+    sass_dir: _scss
+collections:
+  s0_introduction:
+    output: false
+  s1_rules:
+    output: false
+  s2_expressions:
+    output: false
+  s3_capturings:
+    output: false
+  s4_directives:
+    output: false
+  s5_appendix:
+    output: false
+
+# Default values by GitHub
+
+lsi: false
+safe: true
+incremental: false
+highlighter: rouge
+gist:
+  noscript: false
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge

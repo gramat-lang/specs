@@ -1,0 +1,45 @@
+---
+layout: page
+---
+
+<div class="layout">
+  <aside>
+    <nav>
+    {% for collection in site.collections %}
+    {% if collection.label != "posts" %}
+    <div>
+      <a href="#{{collection.docs[0].title | slugify}}">
+        {{ collection.docs[0].title }}
+      </a>
+      {% if collection.docs.size > 1 %}
+      <div>
+        {% for article in collection.docs offset:1 %}
+        <a href="#{{article.title | slugify}}">
+          {{ article.title }}
+        </a>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    {% endif %}
+    {% endfor %}
+    </nav>
+  </aside>
+
+  <main>
+    {% for collection in site.collections %}
+    {% if collection.label != "posts" %}
+    <section>
+      <article>{{ collection.docs[0].content }}</article>
+      {% if collection.docs.size > 1 %}
+      <section>
+        {% for article in collection.docs offset:1 %}
+        <article>{{ article.content }}</article>
+        {% endfor %}
+      </section>
+      {% endif %}
+    </section>
+    {% endif %}
+    {% endfor %}
+  </main>
+</div>
