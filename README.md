@@ -1,6 +1,6 @@
 # Gramat
 
-Please visit [https://gramat-lang.github.io/specs/] for the live specs.
+Please visit https://gramat-lang.github.io/specs/ for the live specs.
 
 ## Run local server
 
